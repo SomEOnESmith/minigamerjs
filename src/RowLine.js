@@ -3,34 +3,23 @@ import React, { Component } from "react";
 import Cell from "./Cell.js";
 
 class RowLine extends Component {
-  elements = [0, 1, 2, 3, 4, 5, 6];
-
   render() {
-    let cells = this.elements.map(i => {
+    let cells = this.props.row.map(cell => {
       return (
-        <td>
-          <Cell
-            id={i}
-            hiddenCell={this.props.hiddenRow}
-            player={this.props.player}
-            emptycell={this.props.emptycell}
-          />
-        </td>
+        <Cell
+          key={cell.id}
+          cell={cell}
+          changeCell={this.props.changeCell}
+          changeState={this.props.changeState}
+        />
       );
     });
     return (
       <div>
         <table>
-          <tr>
-            <td>
-              <Cell
-                id="9"
-                hiddenCell={this.props.hiddenRow}
-                player={this.props.player}
-              />
-            </td>
-            {cells}
-          </tr>
+          <tbody>
+            <tr>{cells}</tr>
+          </tbody>
         </table>
       </div>
     );
